@@ -15,6 +15,38 @@
       "category": "Alimentação",
       "price": 50,
       "createdAt": "2023-03-05T20:46:04.085Z"
+    },
+    {
+      "type": "income",
+      "price": 9000,
+      "description": "WEB SERVER",
+      "category": "Venda",
+      "createdAt": "2023-03-06T14:12:06.582Z",
+      "id": 3
+    },
+    {
+      "type": "income",
+      "price": 9000,
+      "description": "WEB SERVER",
+      "category": "Venda",
+      "createdAt": "2023-03-06T14:12:18.495Z",
+      "id": 4
+    },
+    {
+      "type": "outcome",
+      "price": 4500,
+      "description": "Notebook novo",
+      "category": "Compras",
+      "createdAt": "2023-03-06T14:26:07.194Z",
+      "id": 5
+    },
+    {
+      "type": "outcome",
+      "price": 60,
+      "description": "Pizza",
+      "category": "Alimentação",
+      "createdAt": "2023-03-06T14:49:25.352Z",
+      "id": 6
     }
   ]
 }

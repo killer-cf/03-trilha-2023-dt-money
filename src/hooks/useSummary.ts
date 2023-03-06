@@ -10,7 +10,7 @@ export function useSummary() {
         acc.income += transaction.price
         acc.total += transaction.price
       } else {
-        acc.outcome = transaction.price
+        acc.outcome += transaction.price
         acc.total -= transaction.price
       }
 
