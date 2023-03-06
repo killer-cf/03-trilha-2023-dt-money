@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useLayoutEffect, useState } from 'react'
+import { ReactNode, useLayoutEffect, useState, useCallback } from 'react'
+import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios'
 
 interface Transaction {
@@ -32,7 +33,7 @@ export const TransactionsContext = createContext({} as TransactionsContextType)
 export function TransactionsProvider({ children }: TransactionProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
-  async function fetchTransactions(query?: string) {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get('/transactions', {
       params: {
         _sort: 'createdAt',
@@ -42,21 +43,24 @@ export function TransactionsProvider({ children }: TransactionProviderProps) {
     })
 
     setTransactions(response.data)
-  }
+  }, [])
 
-  async function createTransaction(data: CreateTransactionInput) {
-    const { type, price, description, category } = data
+  const createTransaction = useCallback(
+    async (data: CreateTransactionInput) => {
+      const { type, price, description, category } = data
 
-    const response = await api.post('transactions', {
-      type,
-      price,
-      description,
-      category,
-      createdAt: new Date(),
-    })
+      const response = await api.post('transactions', {
+        type,
+        price,
+        description,
+        category,
+        createdAt: new Date(),
+      })
 
-    setTransactions((state) => [response.data, ...state])
-  }
+      setTransactions((state) => [response.data, ...state])
+    },
+    [],
+  )
 
   useLayoutEffect(() => {
     fetchTransactions()
